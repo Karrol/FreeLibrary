@@ -1,0 +1,56 @@
+{% extends "layout_base.html" %}
+{% block content %}
+    <section class="content">
+        <div class="container">
+            <section class="content-header">
+                <h1>
+
+
+                </h1>
+
+            </section>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="{{ book.img_book.url }}" alt="">
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h2>Informacion Basica:</h2>
+                            </div>
+                            {% if user.is_authenticated %}
+                                <div class="col-md-6">
+                                    <a href="{% url 'books:download' book.file_book.name %}"
+                                       style="float: right;margin-top: 15px"
+                                       class="btn  btn-info">Descargar</a>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <h5>Nombre : <b>{{ book.name }}</b></h5>
+                        <h5>Autor : <b>{{ book.author }}</b></h5>
+                        <h5>Generos :
+
+                            <b>
+                                {% for gender in book.gender.all %}
+                                    <span class="badge bg-blue">{{ gender }}</span>
+                                {% endfor %}
+                            </b>
+                        </h5>
+                        <h5>Cantidad de paginas : <b>{{ book.amount_pages }}</b></h5>
+                        <h5>Cantidad de capitulos : <b>{{ book.amount_chapter }}</b></h5>
+                        <h5>Subido por : <b>{{ book.user }}</b></h5>
+                        <!--<h4>Generos : <b>{{ book.gender }}</b></h4>-->
+
+                        <h5>Descripcion :</h5>
+
+                        <p>{{ book.description }}</p></p>
+                    </div>
+
+
+            </div>
+
+        </div>
+    </section>
+{% endblock %}

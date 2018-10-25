@@ -1,0 +1,46 @@
+{% extends 'account/../../../content/templates/layout_login.html' %}
+
+{% block content %}
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="{% url 'index' %}"><b>Free</b>Library</a>
+        </div>
+
+        <div class="login-box-body">
+            <p class="login-box-msg">
+Registrarse
+
+            </p>
+
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <p>
+                        {{ field }}
+
+                        {% if field.help_text %}
+                            <small style="color: grey">{{ field.help_text }}</small>
+                        {% endif %}
+                        {% for error in field.errors %}
+                            <p style="color: red">{{ error }}</p>
+                        {% endfor %}
+                    </p>
+                {% endfor %}
+                <div class="row">
+                    <div class="col-xs-8">
+
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Registrarme</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+            <a href="{% url 'login' %}" class="text-center">Ya tengo cuenta</a>
+
+        </div>
+        <!-- /.login-box-body -->
+    </div>
+
+{% endblock %}

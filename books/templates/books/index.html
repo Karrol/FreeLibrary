@@ -1,0 +1,125 @@
+{% extends "layout_base.html" %}
+
+<style>
+        .widget-user-2 {
+          overflow-x: scroll;
+        }
+      </style>
+
+{% block content %}
+    <section class="content">
+        <div class="container">
+            <!-- Content Header (Page header) -->
+
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="box box-widget widget-user-2">
+                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                        <div class="widget-user-header bg-blue">
+
+                            <h3 class="widget-user-username">Categorias</h3>
+                        </div>
+                        <div class="box-footer no-padding">
+                            <ul class="nav nav-stacked">
+
+                                {% for category in categories %}
+                                    <li><a href="{% url 'books:category' category.name %}">{{ category.name }} <span
+                                            class="pull-right badge bg-blue"></span></a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="box box-widget widget-user-2">
+                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                        <div class="widget-user-header bg-blue">
+
+                            <h3 class="widget-user-username">Autores</h3>
+                        </div>
+                        <div class="box-footer no-padding">
+                            <ul class="nav nav-stacked">
+
+                                {% for author in authors %}
+                                    <li><a href="{% url 'books:author' author.name %}">{{ author.name }} <span
+                                            class="pull-right badge bg-blue"></span></a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- Widget: user widget style 1 -->
+
+
+                <!-- /.widget-user -->
+            </div>
+
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-12">
+                        {% if nofound %}
+                            <h2>Su busqueda no ahorro resultados...</h2>
+                        {% endif %}
+
+                        {% if no_book_category %}
+                            <h2>En estos momentos no hay libro para esta categoria...</h2>
+                        {% endif %}
+
+                        {% if no_book_author %}
+                            <h2>En estos momentos no hay libro para este autor...</h2>
+                        {% endif %}
+                    </div>
+
+                    {% for book in books %}
+                        <div class="col-md-3 col-sm-6">
+
+                            <div class="product-grid7">
+                                <div class="product-image7">
+                                    <a href="#">
+                                        <img class="pic-1"
+                                             src="{{ book.img_book.url }}">
+                                    </a>
+                                    <a href="{% url 'books:detail' book.id %}" class="select-options"><i
+                                            class="fa fa-arrow-right"></i>Ver</a>
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="title">{{ book.name }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        {% if books.has_previous %}
+
+                            <a class="btn btn-default" href="?page={{ books.previous_page_number }}" tabindex="-1">Anterior</a>
+
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6">
+                        {% if books.has_next %}
+                            <a class="btn btn-default" style="float: right" href="?page={{ books.next_page_number }}"
+                               tabindex="-1">Proximo</a>
+                        {% endif %}
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+{% endblock %}

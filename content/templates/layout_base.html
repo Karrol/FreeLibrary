@@ -1,0 +1,148 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>FreeLibrary</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link href="{% static "bower_components/bootstrap/dist/css/bootstrap.min.css" %}" type="text/css" rel="stylesheet">
+    <link href="{% static "style.css" %}" type="text/css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="{% static "bower_components/font-awesome/css/font-awesome.min.css" %}" type="text/css" rel="stylesheet">
+
+    <!-- Ionicons -->
+
+    <link href="{% static "bower_components/Ionicons/css/ionicons.min.css" %}" type="text/css" rel="stylesheet">
+    <!-- Theme style -->
+    <link href="{% static "dist/css/AdminLTE.css" %}" type="text/css" rel="stylesheet">
+
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link href="{% static "dist/css/skins/_all-skins.css" %}" type="text/css" rel="stylesheet">
+
+       <!--   <link rel="stylesheet" href="{% static "google_fonts.css" %}">
+ Google Font
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+-->
+</head>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
+
+    <header class="main-header">
+        <nav class="navbar navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="{% url 'index' %}" class="navbar-brand"><b>Free</b>Library</a>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#navbar-collapse">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class=""><a href="{% url 'books:addbook' %}">Subir Libro <span class="sr-only">(current)</span></a></li>
+                        <li><a href="#">Pedidos</a></li>
+
+                    </ul>
+                    <form class="navbar-form navbar-left" action="{% url 'books:search' %}" role="search">
+                {% csrf_token %}
+                        <div class="form-group">
+
+                            <input name="q" type="text" class="form-control" id="navbar-search-input" placeholder="Nombre">
+                        </div>
+                    </form>
+                </div>
+                <!-- /.navbar-collapse -->
+                <!-- Navbar Right Menu -->
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+
+                        <!-- User Account Menu -->
+                         {% if user.is_authenticated %}
+                        <li class="dropdown user user-menu">
+                            <!-- Menu Toggle Button -->
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <!-- The user image in the navbar-->
+                                <img src="{% static "dist/img/user2-160x160.jpg" %}" class="user-image" alt="User Image">
+                                <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                <span class="hidden-xs">{{ request.user.username }}</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- The user image in the menu -->
+                                <li class="user-header">
+                                    <img src="{% static "dist/img/user2-160x160.jpg" %}" class="img-circle" alt="User Image">
+
+                                    <p>
+                                        {{ request.user.username }}
+                                        <small></small>
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
+
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="{% url 'logout' %}" class="btn btn-default btn-flat">Cerrar Sesion</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                         {% else %}
+                        <li><a href="{% url 'login' %}">Iniciar Sesion</a></li>
+                        <li><a href="{% url 'signup' %}">Registrarse</a></li>
+                         {% endif %}
+                    </ul>
+                </div>
+                <!-- /.navbar-custom-menu -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+    </header>
+    <!-- Full Width Column -->
+    <div class="content-wrapper">
+        {% block content %}
+
+        {% endblock %}
+        <!-- /.container -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 1.0
+            </div>
+            <strong>Copyright &copy; 2018 <a href="https://adminlte.io">cjam</a>.</strong> All rights
+            reserved.
+        </div>
+        <!-- /.container -->
+    </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+<script src="{% static "bower_components/jquery/dist/jquery.min.js" %}"></script>
+
+<!-- Bootstrap 3.3.7 -->
+<script src="{% static "bower_components/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+<!-- SlimScroll -->
+<script src="{% static "bower_components/jquery-slimscroll/jquery.slimscroll.min.js" %}"></script>
+<!-- FastClick -->
+<script src="{% static "bower_components/fastclick/lib/fastclick.js" %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static "dist/js/adminlte.min.js" %}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{% static "dist/js/demo.js" %}"></script>
+</body>
+</html>

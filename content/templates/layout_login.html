@@ -1,0 +1,27 @@
+
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <link href="{% static "bootstrap.css" %}" type="text/css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static "bower_components/font-awesome/css/font-awesome.min.css" %}">
+  <!-- Ionicons -->
+    <link rel="stylesheet" href="{% static "bower_components/Ionicons/css/ionicons.min.css" %}">
+
+  <!-- Theme style -->
+    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.min.css" %}">
+
+
+  <link rel="stylesheet" href="{% static "google_fonts.css" %}">
+
+    <title>FreeLibary</title>
+</head>
+<body class="hold-transition login-page">
+{% block content %}
+{% endblock %}
+</body>
+</html>

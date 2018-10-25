@@ -1,0 +1,104 @@
+{% extends "layout_base.html" %}
+
+
+
+{% block content %}
+    <div class="container">
+        <section class="content-header">
+            <h1>
+                Agregar libro
+
+            </h1>
+
+        </section>
+        <section class="content">
+            <div class="row">
+                <div class="col-md-8">
+                        <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">Nombre</label>
+                                    {{ form.name }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="author">Autor</label>
+
+                                    {{ form.author }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Cantidad de paginas</label>
+                                    {{ form.amount_pages }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Cantidad de capitulos</label>
+                                    {{ form.amount_chapter }}
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Generos</label>
+                            {{ form.gender }}
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                        </div>
+
+                </div>
+                <div class="col-md-4">
+
+                    <div class="form-group">
+                        <label for="exampleInputFile">Sinopsis</label>
+                        {{ form.description }}
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputFile">Foto Portada</label>
+                                {{ form.img_book }}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputFile">Libro</label>
+                                {{ form.file_book }}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+
+                    <input type="submit" value="Guardar Libro" name="submit" class="btn btn-info"
+                           style="float: right;margin-top: 25px">
+                       </form>
+
+                </div>
+            </div>
+
+
+
+        </section>
+    </div>
+    <br>
+
+{% endblock %}
